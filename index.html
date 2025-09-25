@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Website j</title>
+    <link rel="icon" type="image/png" href="images/icons8-circle-100.png">
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome for Search Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo"> <h3><i class="fa-solid fa-ticket"></i> MyMovies</h3></div>
+        <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="search" class="box-search" placeholder="Search movies...">
+        </div>
+    </header>
+    
+    <section class="sectionouter">
+        <!-- Movies Section -->
+        <section class="movies">
+            
+        </section>
+    </section>
+
+</body>
+<script>
+    let moviescontainer=document.querySelector(".movies")
+    let getMovieList=async (search='')=>{
+       
+        let apiUrl;
+        if(search==""){
+            apiUrl=`https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=04c35731a5ee918f014970082a0088b1&page=1`
+        }
+        else{
+            apiUrl=`https://api.themoviedb.org/3/search/movie?&api_key=04c35731a5ee918f014970082a0088b1&query=${search}`
+        }
+
+        let apiRes = await fetch(apiUrl)
+        let data=await apiRes.json()
+        let finalResults=data.results
+ 
+        let moviesItem= ''
+        finalResults.forEach((obj)=>{
+
+            moviesItem+=`<div class="card">
+            <img src="https://image.tmdb.org/t/p/w1280${obj.poster_path}" alt="Movie 1">
+            <div class="content">
+                <h3>${obj.original_title}</h3>
+                <span>Date: ${obj.release_date}</span>
+            </div>
+        </div>` 
+        })
+
+        moviescontainer.innerHTML=moviesItem
+    }
+
+    getMovieList()
+
+    let searchInput=document.querySelector(".box-search")
+
+    searchInput.addEventListener("keyup",()=>{
+        getMovieList(searchInput.value)
+    })    
+
+
+
+
+</script>
+</html>
