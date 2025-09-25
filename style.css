@@ -1,3 +1,4 @@
+/* Reset */
 * {
     margin: 0;
     padding: 0;
@@ -8,7 +9,8 @@
 
 /* Header */
 .header {
-    width: 82%;               
+    width: 90%;               
+    max-width: 1200px;
     height: 70px;
     background: rgba(0, 0, 0, 0.5);
     color: #fff;
@@ -25,7 +27,6 @@
     backdrop-filter: blur(10px); 
 }
 
-
 .logo {
     font-size: 22px;
     font-weight: bold;
@@ -40,7 +41,6 @@
     color: rgb(51, 30, 147);
 }
 
-
 /* Search Bar */
 .search-bar {
     display: flex;
@@ -48,6 +48,8 @@
     background: #fff;
     border-radius: 20px;
     padding: 5px 10px;
+    max-width: 300px;
+    width: 100%;
 }
 
 .search-bar i {
@@ -60,18 +62,20 @@
     outline: none;
     padding: 5px;
     font-size: 14px;
+    width: 100%;
 }
 
 /* Movies Section outer */
 .sectionouter{
-    padding-top: 85px;
+    padding-top: 100px;
     background: linear-gradient(-225deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%) !important;
 }
+
 /* Movies Section */
 .movies {
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: center; /* center items */
     flex-wrap: wrap; /* Responsive row wrap */
     gap: 20px;
     padding: 20px;
@@ -97,7 +101,7 @@
 
 .card .content {
     padding: 12px;
-    text-align: left;  /* Align text to left */
+    text-align: left;
 }
 
 .card .content h3 {
@@ -114,5 +118,51 @@
 /* Hover Effect */
 .card:hover {
     transform: scale(1.05);
+}
+
+/* Responsive Media Queries */
+
+/* Tablets */
+@media (max-width: 992px) {
+    .movies {
+        gap: 15px;
+    }
+
+    .card {
+        width: 45%; /* 2 cards per row */
+    }
+
+    .header {
+        width: 95%;
+        padding: 0 15px;
+    }
+
+    .search-bar {
+        max-width: 200px;
+    }
+}
+/* Mobile */
+@media (max-width: 768px) {
+    .movies {
+        gap: 12px;
+        justify-content: space-between; /* 2 cards neatly */
+    }
+
+    .card {
+        width: 48%; /* 1 row me 2 cards */
+    }
+
+    .header {
+        flex-direction: column;
+        height: auto;
+        padding: 10px 15px;
+        top: 10px;
+        border-radius: 25px;
+    }
+
+    .search-bar {
+        margin-top: 10px;
+        width: 100%;
+    }
 }
 
